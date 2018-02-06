@@ -1,0 +1,11 @@
+commit 9dc12275c85a252eef524bb238c5595bce4fdfa9 (HEAD -> master)
+Author: Alex Muharski <aom9@mail.ru>
+Date:   Tue Feb 6 12:09:17 2018 +0300
+
+    add status.txt
+
+commit 2bb3de74a3b9a12bcc66796fc0374b07b80135d0
+Author: Alex Muharski <aom9@mail.ru>
+Date:   Tue Feb 6 12:07:21 2018 +0300
+
+    add .gitignore
