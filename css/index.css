@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+#root{
+    width: 100vw;
+    height: 100vh;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: rgb(177, 143, 105);
+}
+
+.button{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    outline: none;
+    border: 1px solid rgb(177, 143, 105);
+    box-shadow: 0px 4px 6px rgb(134, 107, 76);
+}
+
+.button:active{
+    box-shadow: 0px 1px 2px rgb(134, 107, 76);
+}
+
+main{
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    background: rgb(220, 226, 225);
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    flex: 1 0 auto;
+    height: 60px;
+    align-items: center;
+    font-size: 0.7em;
+    background: rgb(216,202,174);
+}
+
+.footer-group,
+.footer-last-update{
+    text-align: center;
+    width: 280px;
+}
+
+footer div{
+    width: 600px;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer div h1{
+    width: auto;
+}
+
+@media screen and (max-width: 1100px){
+    .footer-group{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .footer-last-update{
+        display: none;
+    }
+}
+
+@media screen and (max-width:500px){
+    footer div{
+        font-size: 2vw;
+    }
+}
