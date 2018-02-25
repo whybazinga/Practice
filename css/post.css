@@ -37,8 +37,8 @@
     width: 100%;
     background: rgba(177, 143, 105, 0.94);
     color: rgb(91, 67, 44);
-    visibility: visible;
-    opacity: 1;
+    visibility: hidden;
+    opacity: 0;
     transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
