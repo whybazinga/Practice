@@ -1,19 +1,84 @@
 .post{
     height: 60vh;
     width: 60vh;
-    min-height: 270px;
-    min-width: 270px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
+    min-height: 60vh;
+    min-width: 60vh;
+    margin-left: 5%;
     background: rgb(177, 143, 105);
 }
 
 .post-image{
-    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 90%;
     width: 90%;
-    background: red;
+    background: url("../mark.jpg");
     background-size: 100% 100%;
     background-position: center;
+    margin-left: 5%;
     margin-top: 5%;
+}
+
+.post img{
+    height: 90px;
+    width: 90px;
+}
+
+.post-image:hover > .post-bar{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.post-bar{
+    height: 30%;
+    width: 100%;
+    background: rgba(177, 143, 105, 0.94);
+    color: rgb(91, 67, 44);
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+.post-bar div{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.post-bar h2{
+    height: 1.3em;
+    width: 25%;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.post-bar h2:last-child{
+    height: 1.3em;
+    width: 40%;
+}
+
+.post-bar p{
+    height: 70%;
+    width: 90%;
+    padding: 0 5%;
+    font-weight: bolder;
+    font-size: 1.5em;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 80vh){
+    .post{
+        height: 90vw;
+        width: 90vw;
+        min-height: 90vw;
+        min-width: 90vw;
+    }
 }

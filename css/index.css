@@ -4,18 +4,20 @@
 }
 html,
 body{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    overflow-x: visible;
 }
 
 #root{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     min-height: 500px;
+    min-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: Amatic SC, Arial, Helvetica, sans-serif;
     color: rgb(177, 143, 105);
 }
 
@@ -34,10 +36,12 @@ body{
 
 main{
     height: 100%;
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     background: rgb(220, 226, 225);
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 footer{
@@ -46,7 +50,7 @@ footer{
     flex: 1 0 auto;
     height: 60px;
     align-items: center;
-    font-size: 0.7em;
+    font-size: 1em;
     background: rgb(216,202,174);
 }
 
@@ -67,13 +71,11 @@ footer div h1{
     width: auto;
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 900px){
     .footer-group{
         display: none;
     }
-}
 
-@media screen and (max-width: 900px){
     .footer-last-update{
         display: none;
     }
@@ -82,5 +84,11 @@ footer div h1{
 @media screen and (max-width:500px){
     footer div{
         font-size: 2vw;
+    }
+}
+
+@media screen and (max-height:500px){
+    footer{
+        display: none;
     }
 }
