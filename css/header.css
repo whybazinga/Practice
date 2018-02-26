@@ -4,10 +4,11 @@ header{
     justify-content: space-around;
     background: rgb(216,202,174);
     height: 280px;
+    width: 100%;
 }
 
 header h1{
-    font-size: 4em;
+    font-size: 3em;
     text-align: center;
 }
 
@@ -92,7 +93,7 @@ header h1{
 
 @media screen and (min-width:800px){
     header h1{
-        font-size: 5em;
+        font-size: 3em;
     }
 
     .header-buttons-bar{
@@ -114,7 +115,7 @@ header h1{
     }
 }
 
-@media screen and (max-height: 500px){
+@media screen and (max-height: 550px){
     header h1{
         font-size: 3em;
     }
@@ -124,7 +125,7 @@ header h1{
     }
 
     header{
-        height: 100px;
+        height: 140px;
     }
 
     .header-search-bar{

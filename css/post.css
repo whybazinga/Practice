@@ -1,13 +1,17 @@
 .post{
-    height: 60vh;
-    width: 60vh;
-    min-height: 60vh;
-    min-width: 60vh;
+    display: flex;
+    justify-content: center;
+    height: 55vh;
+    width: 55vh;
+    min-height: 55vh;
+    min-width: 55vh;
     margin-left: 5%;
     background: rgb(177, 143, 105);
 }
 
 .post-image{
+    box-sizing: border-box;
+    align-self: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -17,13 +21,11 @@
     background: url("../mark.jpg");
     background-size: 100% 100%;
     background-position: center;
-    margin-left: 5%;
-    margin-top: 5%;
 }
 
 .post img{
-    height: 90px;
-    width: 90px;
+    height: 80px;
+    width: 80px;
 }
 
 .post-image:hover > .post-bar{
@@ -33,7 +35,7 @@
 }
 
 .post-bar{
-    height: 30%;
+    height: 50%;
     width: 100%;
     background: rgba(177, 143, 105, 0.94);
     color: rgb(91, 67, 44);
@@ -74,7 +76,13 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 80vh){
+@media screen and (max-height: 800px){
+    .post{
+        font-size: 1.9vh;
+    }
+}
+
+@media screen and (max-width: 60vh){
     .post{
         height: 90vw;
         width: 90vw;

@@ -12,12 +12,10 @@ body{
 #root{
     width: 100%;
     height: 100vh;
-    min-height: 500px;
-    min-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: Amatic SC, Arial, Helvetica, sans-serif;
+    font-family: 'Amatic SC', Helvetica, sans-serif;
     color: rgb(177, 143, 105);
 }
 
@@ -71,23 +69,47 @@ footer div h1{
     width: auto;
 }
 
+@media screen and (max-height: 200px){
+    main{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 900px){
-    .footer-group{
-        display: none;
+    footer{
+        height: auto;
+        padding: 5px 0;
+        flex-direction: column;
+        font-size: 2.5vw;
     }
 
+    .footer-group,
     .footer-last-update{
-        display: none;
+        width: auto;
     }
-}
 
-@media screen and (max-width:500px){
     footer div{
-        font-size: 2vw;
+        width: 80%;
     }
 }
 
-@media screen and (max-height:500px){
+@media screen and (max-width: 500px) and (max-height: 500px){
+    footer{
+        font-size: 2.5vw;
+    }
+}
+
+@media screen and (max-height: 700px){
+    footer{
+        font-size: 1.4vw;
+    }
+
+    footer div{
+        width: 60%;
+    }
+}
+
+@media screen and (max-height:400px){
     footer{
         display: none;
     }
