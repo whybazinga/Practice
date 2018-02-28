@@ -58,21 +58,21 @@ header h1{
 }
 
 .upload{
-    background: url("../icons/upload.png");
+    background: url('../icons/upload.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .logout{
-    background: url("../icons/logout.png");
+    background: url('../icons/logout.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: 80% 50%;
 }
 
 .search{
-    background: url("../icons/search.png");
+    background: url('../icons/search.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: center;
