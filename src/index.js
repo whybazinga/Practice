@@ -94,7 +94,7 @@ let func = (function (params) {
         editPhotoPost: function (id, photoPost) {
             let postToChange = this.getPhotoPost(id);
             if (postToChange !== undefined) {
-                Object.assign(postToChange.slice(), photoPost);
+                Object.assign(Object.assign({}, postToChange), photoPost);
                 if (this.validatePhotoPost(postToChange)) {
                     Object.assign(postToChange, photoPost);
                     return true;
