@@ -1,37 +1,13 @@
 var photoPosts = [];
 
-let filterDate = {
-    createdAt: new Date('2018-02-5'),
-};
-
-let filterAuthor = {
-    author: 'Alex3',
-};
-
-let filterTag = {
-    hashTags: ['fun7'],
-};
-
-let func = (function (params) {
+window.coreF = (function (params) {
 
     return {
         currentId: 1,
 
-        createPhotoPost: function (description, createdAt, author, photoLink, hashTags, likes) {
-            return {
-                id: '' + this.currentId++,
-                description: description,
-                createdAt: createdAt,
-                author: author,
-                photoLink: photoLink,
-                hashTags: hashTags,
-                likes: likes,
-            }
-        },
-
         getPhotoPosts: function (skip = 0, top = 10, filterConfig) {
             let result;
-            if (arguments.length < 3) {
+            if (arguments.length < 3 || filterConfig === undefined || filterConfig === {}) {
                 result = photoPosts.slice(skip, skip + top);
             } else {
                 result = photoPosts.slice(skip, skip + top).filter((element) => {
@@ -111,102 +87,4 @@ let func = (function (params) {
             } else return false;
         },
     };
-})()
-
-for (let i = 0; i < 10; i++) {
-    console.log(func.addPhotoPost(
-        func.createPhotoPost('description of post #' + func.currentId++,
-            new Date(('2018-02-' + func.currentId++),
-                'Alex' + func.currentId++,
-                'samplepng.png',
-                ['fun' + func.currentId++, 'love'],
-                ['Alex', 'Simon']
-            )
-        )
-    ));
-}
-
-console.log('\n-func.getPhotoPosts')
-console.log('10 posts:');
-console.log(func.getPhotoPosts());
-console.log('2 posts starting from the 3:');
-console.log(func.getPhotoPosts(2, 2));
-console.log('default 10 posts starting from 4:');
-console.log(func.getPhotoPosts(4));
-console.log('posts after filtering by date = 2018-02-5:');
-console.log(func.getPhotoPosts(0, 10, filterDate));
-console.log('posts after filtering by author = Alex3:');
-console.log(func.getPhotoPosts(0, 10, filterAuthor));
-console.log('posts after filtering by hashtag \'fun7\':');
-console.log(func.getPhotoPosts(0, 10, filterTag));
-
-console.log('\n-getPhotoPost');
-console.log('post with id 2:');
-console.log(func.getPhotoPost('2'));
-console.log('post with id 11:');
-console.log(func.getPhotoPost('11'));
-
-console.log('\n-validatePhotoPost');
-console.log('with valid properties:');
-console.log(func.validatePhotoPost({
-    id: '4',
-    description: '123',
-    createdAt: new Date('2007-2-2'),
-    author: 'Alex',
-    photoLink: 'link',
-    hashTags: ['tag1', 'tag2'],
-    likes: ['me'],
-}));
-console.log('with invalid createdAt:');
-console.log(func.validatePhotoPost({
-    id: '4',
-    description: '123',
-    createdAt: 100,
-    author: 'Alex',
-    photoLink: 'link',
-    hashTags: ['tag1', 'tag2'],
-    likes: ['me']
-}));
-
-console.log('\n-addPhotoPost');
-console.log('all posts: ');
-console.log(photoPosts);
-console.log('trying to add invalid post: ');
-console.log(func.addPhotoPost({
-    id: '4',
-    description: 'Hello',
-    createdAt: 4
-}));
-console.log('all posts: ');
-console.log(photoPosts);
-console.log('trying to add valid post: ');
-console.log(func.addPhotoPost({
-    id: '4',
-    description: '123',
-    createdAt: new Date('2007-2-2'),
-    author: 'Alex',
-    photoLink: 'link',
-    hashTags: ['tag1', 'tag2'],
-    likes: ['me'],
-}));
-console.log('all posts: ');
-console.log(photoPosts);
-
-console.log('\n-editPhotoPost');
-console.log('post #3 before editing:');
-console.log(func.getPhotoPost('3'));
-console.log('trying to edit post #3:');
-console.log(func.editPhotoPost('3', {
-    photoLink: 'new link',
-    description: '456'
-}));
-console.log('post #3 after editing:');
-console.log(func.getPhotoPost('3'));
-
-console.log('\n-removePhotoPost');
-console.log('removing post #3');
-console.log(func.removePhotoPost('3'));
-console.log('trying to get post #3');
-console.log(func.getPhotoPost('3'));
-
-
+})();
