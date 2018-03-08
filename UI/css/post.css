@@ -23,9 +23,17 @@
     background-position: center;
 }
 
-.post img{
-    height: 80px;
-    width: 80px;
+.post-button-bar{
+    padding: 5px 0;
+    height: 30px;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-button-bar img{
+    height: 100%;
+    width: 30px;
 }
 
 .post-image:hover > .post-bar{

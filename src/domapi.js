@@ -1,7 +1,20 @@
 window.domF = (function () {
     let main = document.querySelector('main');
+    let username = document.querySelector('.header-username');
 
     return {
+        user: null,
+
+        changeUser: function (newUser) {
+            if (newUser !== null && typeof newUser != 'undefined') {
+                this.user = newUser;
+                username.innerHTML = this.user;
+            } else {
+                this.user = null;
+                username.innerHTML = 'Guest';
+            }
+        },
+
         createPhotoPost: function (photoPost) {
             let post = document.createElement('div');
             post.id = photoPost.id;
@@ -9,10 +22,20 @@ window.domF = (function () {
             let image = document.createElement('div');
             image.className = 'post-image';
             image.style.background = 'url(' + photoPost.photoLink + ')';
+            let buttonBar = document.createElement('div');
+            buttonBar.className = 'post-button-bar';
+            let settings = document.createElement('img');
+            settings.src = './icons/settings.png';
             let heart = document.createElement('img');
             heart.src = './icons/heart.png';
-            heart.height = '100%';
-            heart.width = '100%';
+            let cross = document.createElement('img');
+            cross.src = './icons/cross.png';
+            if (this.user.toUpperCase() !== photoPost.author.toUpperCase()) {
+                settings.style.display = 'none';
+                heart.style.display = 'none';
+                cross.style.display = 'none';
+            }
+            buttonBar.append(settings, heart, cross);
             let postBar = document.createElement('div');
             postBar.className = 'post-bar';
             let info = document.createElement('div');
@@ -26,13 +49,9 @@ window.domF = (function () {
                 + photoPost.createdAt.getFullYear();
             tags.innerHTML = photoPost.hashTags.reduce((accum, element) => accum + ' ' + element);
             description.innerHTML = photoPost.description;
-            info.appendChild(author);
-            info.appendChild(date);
-            info.appendChild(tags);
-            postBar.appendChild(info);
-            postBar.appendChild(description);
-            image.appendChild(heart);
-            image.appendChild(postBar);
+            info.append(author, date, tags);
+            postBar.append(info, description);
+            image.append(buttonBar, postBar);
             post.appendChild(image);
             return post;
         },
@@ -74,3 +93,6 @@ window.domF = (function () {
 
     }
 })()
+
+domF.changeUser('Sample');
+domF.addPhotoPosts();
