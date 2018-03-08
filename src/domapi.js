@@ -1,5 +1,8 @@
 window.domF = (function () {
     let main = document.querySelector('main');
+    let uploadButton = document.querySelector('.upload');
+    let loginButton = document.querySelector('.login');
+    let logoutButton = document.querySelector('.logout');
     let username = document.querySelector('.header-username');
 
     return {
@@ -9,6 +12,9 @@ window.domF = (function () {
             if (newUser !== null && typeof newUser != 'undefined') {
                 this.user = newUser;
                 username.innerHTML = this.user;
+                uploadButton.style.visibility = 'initial';
+                loginButton.style.display = 'none';
+                logoutButton.style.display = 'initial';
             } else {
                 this.user = null;
                 username.innerHTML = 'Guest';
@@ -30,7 +36,7 @@ window.domF = (function () {
             heart.src = './icons/heart.png';
             let cross = document.createElement('img');
             cross.src = './icons/cross.png';
-            if (this.user.toUpperCase() !== photoPost.author.toUpperCase()) {
+            if (this.user !== null && this.user.toUpperCase() !== photoPost.author.toUpperCase()) {
                 settings.style.display = 'none';
                 heart.style.display = 'none';
                 cross.style.display = 'none';

@@ -73,6 +73,13 @@ header h1{
     background-position: 80% 50%;
 }
 
+.login{
+    background: url('../icons/login.png');
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .search{
     background: url('../icons/search.png');
     background-size: 70% 70%;
