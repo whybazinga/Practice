@@ -1,25 +1,24 @@
 window.domF = (function () {
-    let main = document.querySelector('main');
-    let uploadButton = document.querySelector('.upload');
-    let loginButton = document.querySelector('.login');
-    let logoutButton = document.querySelector('.logout');
-    let username = document.querySelector('.header-username');
+    // let uploadButton = document.querySelector('.upload-button');
+    // let loginButton = document.querySelector('.login-button');
+    // let logoutButton = document.querySelector('.logout-button');
+    // let username = document.querySelector('.header-username');
 
     return {
-        user: null,
+        // user: null,
 
-        changeUser: function (newUser) {
-            if (newUser !== null && typeof newUser != 'undefined') {
-                this.user = newUser;
-                username.innerHTML = this.user;
-                uploadButton.style.visibility = 'initial';
-                loginButton.style.display = 'none';
-                logoutButton.style.display = 'initial';
-            } else {
-                this.user = null;
-                username.innerHTML = 'Guest';
-            }
-        },
+        // changeUser: function (newUser) {
+        //     if (newUser !== null && typeof newUser != 'undefined') {
+        //         this.user = newUser;
+        //         username.innerHTML = this.user;
+        //         uploadButton.style.visibility = 'initial';
+        //         loginButton.style.display = 'none';
+        //         logoutButton.style.display = 'initial';
+        //     } else {
+        //         this.user = null;
+        //         username.innerHTML = 'Guest';
+        //     }
+        // },
 
         createPhotoPost: function (photoPost) {
             let post = document.createElement('div');
@@ -36,11 +35,11 @@ window.domF = (function () {
             heart.src = './icons/heart.png';
             let cross = document.createElement('img');
             cross.src = './icons/cross.png';
-            if (this.user !== null && this.user.toUpperCase() !== photoPost.author.toUpperCase()) {
-                settings.style.display = 'none';
-                heart.style.display = 'none';
-                cross.style.display = 'none';
-            }
+            //if (this.user !== null && this.user.toUpperCase() !== photoPost.author.toUpperCase()) {
+            settings.style.display = 'none';
+            heart.style.display = 'none';
+            cross.style.display = 'none';
+            //}
             buttonBar.append(settings, heart, cross);
             let postBar = document.createElement('div');
             postBar.className = 'post-bar';
@@ -64,7 +63,7 @@ window.domF = (function () {
 
         addPhotoPost: function (photoPost) {
             if (coreF.addPhotoPost(photoPost)) {
-                main.appendChild(this.createPhotoPost(photoPost));
+                document.querySelector('main').appendChild(this.createPhotoPost(photoPost));
                 return true;
             }
             return false;
@@ -73,13 +72,13 @@ window.domF = (function () {
         addPhotoPosts: function (skip = 0, top = 10, filterConfig) {
             let arr = coreF.getPhotoPosts(skip, top, filterConfig);
             arr.forEach(element => {
-                main.appendChild(this.createPhotoPost(element));
+                document.querySelector('main').appendChild(this.createPhotoPost(element));
             });
         },
 
         editPhotoPost: function (id, photoPost) {
             if (coreF.editPhotoPost(id, photoPost)) {
-                main.replaceChild(this.createPhotoPost(coreF.getPhotoPost(id)), document.getElementById(id));
+                document.querySelector('main').replaceChild(this.createPhotoPost(coreF.getPhotoPost(id)), document.getElementById(id));
                 return true;
             }
             return false;
@@ -87,18 +86,15 @@ window.domF = (function () {
 
         removePhotoPost: function (id) {
             if (coreF.removePhotoPost(id)) {
-                main.removeChild(document.getElementById(id));
+                document.querySelector('main').removeChild(document.getElementById(id));
                 return true;
             }
             return false;
         },
 
-        clearMain: function () {
-            main.innerHTML = '';
+        clearThread: function () {
+            document.querySelector('main').innerHTML = '';
         }
 
     }
 })()
-
-domF.changeUser('Sample');
-domF.addPhotoPosts();

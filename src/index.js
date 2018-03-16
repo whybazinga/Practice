@@ -1,5 +1,3 @@
-let photoPosts = [];
-
 window.coreF = (function (params) {
 
     return {
@@ -89,32 +87,6 @@ window.coreF = (function (params) {
     };
 })();
 
-coreF.addPhotoPost({
-    id: '1',
-    description: 'в Пхёнчхане!!!',
-    createdAt: new Date('2014-02-23T23:00:00'),
-    author: 'Alex',
-    photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-    hashTags: ['#sport'],
-    likes: [],
-});
-
-coreF.addPhotoPost({
-    id: '2',
-    description: 'sample text',
-    createdAt: new Date('2014-02-23T23:00:00'),
-    author: 'sample',
-    photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-    hashTags: ['#sport'],
-    likes: [],
-});
-
-coreF.addPhotoPost({
-    id: '3',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    createdAt: new Date('2014-02-23T23:00:00'),
-    author: '123',
-    photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-    hashTags: ['#sport'],
-    likes: [],
-});
+window.unload = () => {
+    document.querySelector('#root').removeChild(document.querySelector('main'));
+}
