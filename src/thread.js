@@ -12,6 +12,8 @@ const threadPage = new function () {
             domF.addPhotoPosts();
         }
     }
-}
 
-threadPage.load(true);
+    this.unload = () => {
+        document.querySelector('#root').removeChild(document.querySelector('main'));
+    }
+}

@@ -1,0 +1,64 @@
+main.add-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-drag-input,
+.photo-info{
+    box-sizing: border-box;
+    height: 55vh;
+    width: 55vh;
+    min-height: 55vh;
+    min-width: 55vh;
+    margin: 0 10px;
+    border: 10px solid rgb(177, 143, 105);
+}
+
+.photo-drag-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#drop-zone{
+    display: flex;
+    height: 90%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.dragover{
+    border: 5px dashed rgb(177, 143, 105);
+    background: rgba(177, 143, 105, 0.3);
+}
+
+.drop-upload{
+    display: flex;
+    height: 60%;
+    width: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.drop-upload img{
+    height: 60%;
+    width: 60%;
+}
+
+.drop-upload h3{
+    display: unset;
+    font-size: 6vh;
+    font-weight: bold;
+}
+
+.uploaded-image{
+    height: auto;
+    width: 100%;
+}
+
+.photo-info{
+    
+}

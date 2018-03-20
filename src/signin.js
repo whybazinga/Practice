@@ -45,4 +45,10 @@ const signInPage = new function () {
         document.querySelector('#root').insertBefore(this.page(), document.querySelector('footer'));
         this.init();
     }
+
+    this.unload = () => {
+        document.querySelector('header').style.display = '';
+        document.forms['login-form'].onsubmit = null;
+        document.querySelector('#root').removeChild(document.querySelector('main'));
+    }
 };

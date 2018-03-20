@@ -6,7 +6,9 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' href='css/main/index.css' />
     <link rel='stylesheet' href='css/main/post.css' />
+    <link rel='stylesheet' href='css/addPhoto/index.css' />
     <link rel='stylesheet' href='css/header.css' />
+    <link rel='stylesheet' href='css/footer.css' />
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Amatic+SC' />
     <title>Carpe Diem</title>
 </head>
@@ -15,12 +17,12 @@
     <div id='root'>
         <header>
             <div class='header-buttons-bar'>
-                <button class='upload button' style="visibility: hidden;"></button>
+                <button class='upload-button button' style="visibility: hidden;"></button>
                 <h1>
                     Carpe Diem
                 </h1>
-                <button class='logout button' style="display: none;"></button>
-                <button class='login button'></button>
+                <button class='logout-button button' style="display: none;"></button>
+                <button class='login-button button'></button>
             </div>
             <div class='header-search-bar'>
                 <div class='search-fields'>
@@ -36,6 +38,15 @@
             </div>
             <h2 class='header-username'>Guest</h2>
         </header>
+        <main class="add-photo">
+            <div class="photo-drag-input">
+                <div id="drop-zone">
+                    <img src="icons/upload.png">
+                    <h3>Upload</h3>
+                </div>
+            </div>
+            <div class="photo-info"></div>
+        </main>
         <footer>
             <h1 class='footer-group'>FAMCS, Group 5</h1>
             <div>

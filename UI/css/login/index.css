@@ -1,11 +1,5 @@
-main{
-    background: rgb(220, 226, 225);
-}
-
 main.login{
     display: flex;
-    height: 100%;
-    width: 100%;
     align-items: center;
     justify-content: space-around;
 }
