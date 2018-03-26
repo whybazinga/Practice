@@ -1,13 +1,32 @@
 const ls = (function() {
   return {
-    init: () => {},
-
-    getUsers: () => {
-      localStorage.getItem(0);
+    init: () => {
+      storagePosts.sort((element1, element2) => {
+        return element2.createdAt - element1.createdAt;
+      });
+      storagePosts.forEach(el => {
+        ls.set(el.id, el);
+      });
     },
-    getPosts: () => {
-      localStorage.getItem(1);
+
+    get: id => {
+      return JSON.parse(localStorage.getItem(id));
+    },
+
+    set: (id, data) => {
+      localStorage.setItem(id, JSON.stringify(data));
+    },
+
+    remove: id => {
+      localStorage.removeItem(id);
     }
+  };
+})();
+
+window.nextId = (() => {
+  let id = 0;
+  return () => {
+    return id++;
   };
 })();
 
@@ -23,9 +42,9 @@ const users = [
   }
 ];
 
-const photoPosts = [
+let photoPosts = [
   {
-    id: "1",
+    id: nextId(),
     description: "в Пхёнчхане!!!",
     createdAt: new Date(2014, 1, 20),
     author: "Alex",
@@ -34,7 +53,7 @@ const photoPosts = [
     likes: []
   },
   {
-    id: "2",
+    id: nextId(),
     description: "sample text",
     createdAt: new Date("2014-02-23T23:00:00"),
     author: "Alex",
@@ -43,7 +62,7 @@ const photoPosts = [
     likes: []
   },
   {
-    id: "3",
+    id: nextId(),
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     createdAt: new Date("2014-02-23T23:00:00"),
@@ -53,7 +72,7 @@ const photoPosts = [
     likes: []
   },
   {
-    id: "4",
+    id: nextId(),
     description:
       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     createdAt: new Date("2015-02-23T23:00:00"),
@@ -63,7 +82,7 @@ const photoPosts = [
     likes: []
   },
   {
-    id: "5",
+    id: nextId(),
     description: "Its so boring to write this objects",
     createdAt: new Date("2016-02-23T23:00:00"),
     author: "Gena",
@@ -72,7 +91,7 @@ const photoPosts = [
     likes: []
   },
   {
-    id: "6",
+    id: nextId(),
     description: "Gena is really cool",
     createdAt: new Date("2015-02-23T23:00:00"),
     author: "Gena",
@@ -82,10 +101,4 @@ const photoPosts = [
   }
 ];
 
-// function getCurrentUser() {
-//     return JSON.parse(sessionStorage.getItem('currentUser'));
-// }
-
-// function logOut() {
-//     sessionStorage.removeItem('currentUser');
-// }
+const storagePosts = photoPosts;

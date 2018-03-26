@@ -1,54 +1,54 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 html,
-body{
-    width: 100%;
-    height: 100vh;
-    overflow-x: visible;
+body {
+  width: 100%;
+  height: 100vh;
+  overflow-x: visible;
 }
 
-#root{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-family: 'Amatic SC', Helvetica, sans-serif;
-    color: rgb(177, 143, 105);
+#root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Amatic SC", Helvetica, sans-serif;
+  color: rgb(177, 143, 105);
 }
 
-.button{
-    height: 40px;
-    width: 40px;
-    min-height: 40px;
-    min-width: 40px;
-    border-radius: 50%;
-    outline: none;
-    border: 1px solid rgb(177, 143, 105);
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+.button {
+  height: 40px;
+  width: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  outline: none;
+  border: 1px solid rgb(177, 143, 105);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
 }
 
-.button:active{
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+.button:active {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-main{
-    height: 100%;
-    width: 100%;
-    background: rgb(220, 226, 225);
+main {
+  height: 100%;
+  width: 100%;
+  background: rgb(220, 226, 225);
 }
 
-main.main{
-    display: flex;
-    align-items: center;
-    overflow-x: scroll;
-    overflow-y: hidden;
+main.main {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
-@media screen and (max-height: 200px){
-    main{
-        display: none;
-    }
+@media screen and (max-height: 200px) {
+  main {
+    display: none;
+  }
 }

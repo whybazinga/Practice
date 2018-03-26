@@ -1,130 +1,130 @@
-main.add-photo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+main.add-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.add-photo [name=add-photo-form],
+.add-photo [name="add-photo-form"],
 .photo-drag-input,
-.photo-info{
-    height: calc(50vh + 45px);
-    min-height: calc(50vh + 50px);
+.photo-info {
+  height: calc(50vh + 45px);
+  min-height: calc(50vh + 50px);
 }
 
-.add-photo [name=add-photo-form]{
-    display: flex;
-    align-items: center;
-    width: 70%;
-    justify-content: space-around;
+.add-photo [name="add-photo-form"] {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: space-around;
 }
 
 .photo-drag-input,
-.photo-info{
-    display: flex;
-    box-sizing: border-box;
-    width: 50vh;
-    min-width: 50vh;
-    flex-direction: column;
-    margin: 0 10px;
-    border: 10px solid rgb(177, 143, 105);
+.photo-info {
+  display: flex;
+  box-sizing: border-box;
+  width: 50vh;
+  min-width: 50vh;
+  flex-direction: column;
+  margin: 0 10px;
+  border: 10px solid rgb(177, 143, 105);
 }
 
-.photo-drag-input{
-    justify-content: space-around;
-    align-items: center;
+.photo-drag-input {
+  justify-content: space-around;
+  align-items: center;
 }
 
-.drop-input-button-bar{
-    display: flex;
-    height: 45px;
-    width: 95%;
-    justify-content: flex-end;
-    align-items: center;
-    flex-grow: 0;
+.drop-input-button-bar {
+  display: flex;
+  height: 45px;
+  width: 95%;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 0;
 }
 
-#drop-zone{
-    box-sizing: border-box;
-    display: flex;
-    height: 45vh;
-    width: 45vh;
-    justify-content: center;
-    align-items: center;
-    overflow-y: hidden;
+#drop-zone {
+  box-sizing: border-box;
+  display: flex;
+  height: 45vh;
+  width: 45vh;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
 }
 
-.dragover{
-    border: 5px dashed rgb(177, 143, 105);
-    background: rgba(177, 143, 105, 0.3);
+.dragover {
+  border: 5px dashed rgb(177, 143, 105);
+  background: rgba(177, 143, 105, 0.3);
 }
 
-.drop-upload{
-    display: flex;
-    height: 60%;
-    width: 60%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.drop-upload {
+  display: flex;
+  height: 60%;
+  width: 60%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.drop-upload img{
-    height: 60%;
-    width: 60%;
+.drop-upload img {
+  height: 60%;
+  width: 60%;
 }
 
-.drop-upload h3{
-    display: unset;
-    font-size: 6vh;
-    font-weight: bold;
+.drop-upload h3 {
+  display: unset;
+  font-size: 6vh;
+  font-weight: bold;
 }
 
-.uploaded-image{
-    height: auto;
-    width: 100%;
+.uploaded-image {
+  height: auto;
+  width: 100%;
 }
 
-.photo-info{
-    align-items: center;
-    justify-content: space-around;
+.photo-info {
+  align-items: center;
+  justify-content: space-around;
 }
-.photo-info textarea{
-    box-sizing: border-box;
-    width: 90%;
-    padding: 0.2em;
-    font-size: 1.2em;
-    line-height: 1.2em;
-    outline: none;
-    resize: none;
-}
-
-.photo-info [name=description]{
-    height: 70%;
+.photo-info textarea {
+  box-sizing: border-box;
+  width: 90%;
+  padding: 0.2em;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  outline: none;
+  resize: none;
 }
 
-.photo-info [name=hashTags]{
-    height: 20%;
+.photo-info [name="description"] {
+  height: 70%;
 }
 
-.add-photo-form-buttons-bar{
-    display: flex;
-    height: 60%;
-    flex-flow: column wrap;
-    justify-content: space-around;
+.photo-info [name="hashTags"] {
+  height: 20%;
 }
 
-.add-photo-form-buttons-bar .button{
-    height: 80px;
-    width: 80px;
+.add-photo-form-buttons-bar {
+  display: flex;
+  height: 60%;
+  flex-flow: column wrap;
+  justify-content: space-around;
 }
 
-.tick-button{
-    background: rgb(216,202,174);
-    background-image: url('../../icons/tick.png');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+.add-photo-form-buttons-bar .button {
+  height: 80px;
+  width: 80px;
 }
 
-.dnone{
-    display: none;
+.tick-button {
+  background: rgb(216, 202, 174);
+  background-image: url("../../icons/tick.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dnone {
+  display: none;
 }
