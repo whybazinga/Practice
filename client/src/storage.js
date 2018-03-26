@@ -43,40 +43,42 @@ const storageUsers = [
 const storagePosts = [
   {
     id: nextId(),
-    description: "в Пхёнчхане!!!",
-    createdAt: new Date(2014, 1, 20),
+    description: "Fantastic, neo-punk illustrations by artist Jor-Ros",
+    createdAt: new Date(2017, 1, 20),
     author: "Alex",
-    photoLink: "http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg",
-    hashTags: ["#sport"],
+    photoLink:
+      "https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg",
+    hashTags: ["#jorros", "#artist"],
     likes: []
   },
   {
     id: nextId(),
-    description: "sample text",
+    description: "Fantastic, neo-punk illustrations by artist Jor-Ros",
     createdAt: new Date("2014-02-23T23:00:00"),
     author: "Alex",
-    photoLink: "http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg",
-    hashTags: ["#sport"],
+    photoLink:
+      "https://78.media.tumblr.com/639a15872d56858e2d39ee421d288e3d/tumblr_on6og0v1y31qz9v0to6_1280.jpg",
+    hashTags: ["#neo", "#punk", "#jorros"],
     likes: []
   },
   {
     id: nextId(),
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "Fantastic, neo-punk illustrations by artist Jor-Ros",
     createdAt: new Date("2014-02-23T23:00:00"),
     author: "Alex",
-    photoLink: "http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg",
-    hashTags: ["#sport"],
+    photoLink:
+      "https://78.media.tumblr.com/e37c07979856f2104fd328e98399e8ea/tumblr_on6og0v1y31qz9v0to2_1280.jpg",
+    hashTags: ["#artist"],
     likes: []
   },
   {
     id: nextId(),
-    description:
-      "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: "Childish Gambino",
     createdAt: new Date("2015-02-23T23:00:00"),
     author: "Xela",
-    photoLink: "http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg",
-    hashTags: ["#sport"],
+    photoLink:
+      "https://s-media-cache-ak0.pinimg.com/originals/1a/be/13/1abe13e0f00c492f045f4f37a87cfdc3.jpg",
+    hashTags: ["#art", "#childish"],
     likes: []
   },
   {
@@ -84,16 +86,18 @@ const storagePosts = [
     description: "Its so boring to write this objects",
     createdAt: new Date("2016-02-23T23:00:00"),
     author: "Gena",
-    photoLink: "http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg",
-    hashTags: ["#sport"],
+    photoLink:
+      "https://static1.squarespace.com/static/59eb225f18b27d7095ce47d3/59eb56e06957da7471d600b8/59eb5700edaed8b0a791a3b9/1508595475557/scar2.png?format=1000w",
+    hashTags: ["#scarface"],
     likes: []
   },
   {
     id: nextId(),
-    description: "Gena is really cool",
+    description: "Jor-Ros is perfect",
     createdAt: new Date("2015-02-23T23:00:00"),
     author: "Gena",
-    photoLink: "http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg",
+    photoLink:
+      "https://i.pinimg.com/736x/43/f3/ee/43f3eee694d4199a7e22a3efe3679884.jpg",
     hashTags: ["#sport"],
     likes: []
   }
