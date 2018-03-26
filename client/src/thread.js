@@ -11,11 +11,12 @@ const threadPage = new function() {
         const post = coreF.getPhotoPost(el.closest(".post").id);
         if (!post.likes.find(e => e == currentUser)) {
           post.likes.push(currentUser);
-          el.style.backgroundImage = "url(../UI/icons/heartF.png)";
+          el.style.backgroundImage = "url(./icons/heartF.png)";
         } else {
           post.likes.splice(post.likes.indexOf(currentUser), 1);
-          el.style.backgroundImage = "url(../UI/icons/heart.png)";
+          el.style.backgroundImage = "url(./icons/heart.png)";
         }
+        coreF.editPhotoPost(post.id, post);
       };
     });
 

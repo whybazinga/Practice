@@ -43,7 +43,7 @@ window.domF = (function() {
         } else {
           if (photoPost.likes.indexOf(currentUser) !== -1) {
             post.children[0].children[0].innerHTML = `
-                        <button class="heart-button button" style="background-image: url(../UI/icons/heartF.png)"></button>
+                        <button class="heart-button button" style="background-image: url(./icons/heartF.png)"></button>
                     `;
           } else {
             post.children[0].children[0].innerHTML = `
