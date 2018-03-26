@@ -1,8 +1,8 @@
-const signInPage = new function () {
-    this.page = () => {
-        let main = document.createElement('main');
-        main.className = 'login';
-        main.innerHTML = `
+const signInPage = new function() {
+  this.page = () => {
+    let main = document.createElement("main");
+    main.className = "login";
+    main.innerHTML = `
             <div class="welcome-header">
                 <h2>Sign in and...</h2>
                 <h1>Carpe Diem</h1>
@@ -20,40 +20,47 @@ const signInPage = new function () {
                 <h3>Invalid input</h3>
             </form>
             `;
-        return main;
-    }
+    return main;
+  };
 
-    this.init = () => {
-        document.forms['login-form'].onsubmit = (e) => {
-            e.preventDefault();
-            const user = {
-                login: e.currentTarget[0].value,
-                password: e.currentTarget[1].value,
-            }
-            // if (users.find((element) => {
-            //     return element.username === user.login && element.password === user.password;
-            // })) {
-            if (user.login === admin.username && admin.password === user.password) {
-                window.goToPage('thread');
-                window.changeUser(user.login);
-                domF.addPhotoPosts();
-            } else {
-                alert('Invalid input');
-            }
-        }
-        document.querySelector('.welcome-header>h1').onclick = () => { goToPage('thread', true) };
-    }
+  this.init = () => {
+    document.forms["login-form"].onsubmit = e => {
+      e.preventDefault();
+      const user = {
+        login: e.currentTarget[0].value,
+        password: e.currentTarget[1].value
+      };
+      if (
+        users.find(element => {
+          return (
+            element.username === user.login &&
+            element.password === user.password
+          );
+        })
+      ) {
+        window.goToPage("thread");
+        window.changeUser(user.login);
+      } else {
+        alert("Invalid input");
+      }
+    };
+    document.querySelector(".welcome-header>h1").onclick = () => {
+      goToPage("thread", true);
+    };
+  };
 
-    this.load = () => {
-        document.querySelector('header').style.display = 'none';
-        document.querySelector('#root').insertBefore(this.page(), document.querySelector('footer'));
-        this.init();
-    }
+  this.load = () => {
+    document.querySelector("header").style.display = "none";
+    document
+      .querySelector("#root")
+      .insertBefore(this.page(), document.querySelector("footer"));
+    this.init();
+  };
 
-    this.unload = () => {
-        document.querySelector('header').style.display = '';
-        document.forms['login-form'].onsubmit = null;
-    }
+  this.unload = () => {
+    document.querySelector("header").style.display = "";
+    document.forms["login-form"].onsubmit = null;
+  };
 
-    this.changeUser = () => { }
-};
+  this.changeUser = () => {};
+}();
