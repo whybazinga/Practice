@@ -142,12 +142,12 @@ const addPhotoPage = new function() {
     const dropZone = document.querySelector("#drop-zone");
     form.onsubmit = e => {
       e.preventDefault();
-      let photoPost =
-        editModeId === undefined ? {} : coreF.getPhotoPost(editModeId);
+      let photoPost = !editModeId ? {} : coreF.getPhotoPost(editModeId);
       if (!editModeId) {
         photoPost.id = window.nextId();
         photoPost.createdAt = new Date();
         photoPost.likes = [];
+        photoPost.author = currentUser;
       }
       photoPost.description = form.children[1].children[0].value;
       photoPost.hashTags = form.children[1].children[1].value.split(" ");
@@ -156,9 +156,9 @@ const addPhotoPage = new function() {
       } else {
         photoPost.photoLink = dropZone.children[0].src;
         if (editModeId) {
-          coreF.editPhotoPost(editModeId, photoPost);
+          console.log(coreF.editPhotoPost(editModeId, photoPost));
         } else {
-          coreF.addPhotoPost(photoPost);
+          console.log(coreF.addPhotoPost(photoPost));
         }
         goToPage("thread", true);
       }

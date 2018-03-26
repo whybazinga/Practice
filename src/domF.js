@@ -1,7 +1,7 @@
 window.domF = (function() {
   return {
     createPhotoPost: function(photoPost) {
-      const {
+      let {
         id,
         author,
         createdAt,
@@ -11,16 +11,17 @@ window.domF = (function() {
       } = photoPost;
       let post = document.createElement("div");
       let date =
-        createdAt.getDate() +
+        new Date(createdAt).getDate() +
         "." +
-        (createdAt.getMonth() + 1) +
+        new Date(createdAt).getMonth() +
+        1 +
         "." +
-        createdAt.getFullYear();
+        new Date(createdAt).getFullYear();
       let tags = hashTags.reduce((accum, element) => accum + " " + element);
       post.id = id;
       post.className = "post";
       post.innerHTML = `
-                <div class="post-image" style="background:url(${photoLink}) no-repeat center 0">
+                <div class="post-image" style="background:url(${photoLink}) no-repeat center 0; background-size: 100% auto;">
                     <div class="post-button-bar">
                     </div>
                     <div class="post-bar">

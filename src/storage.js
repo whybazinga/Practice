@@ -4,37 +4,35 @@ const ls = (function() {
       storagePosts.sort((element1, element2) => {
         return element2.createdAt - element1.createdAt;
       });
-      storagePosts.forEach(el => {
-        ls.set(el.id, el);
-      });
+      localStorage.setItem("0", JSON.stringify(storageUsers));
+      ls.savePosts(storagePosts);
     },
 
-    get: id => {
-      return JSON.parse(localStorage.getItem(id));
+    getUsers: () => {
+      return JSON.parse(localStorage.getItem("0"));
     },
 
-    set: (id, data) => {
-      localStorage.setItem(id, JSON.stringify(data));
+    getPosts: () => {
+      return JSON.parse(localStorage.getItem("1"));
     },
 
-    remove: id => {
-      localStorage.removeItem(id);
+    savePosts: photoPosts => {
+      localStorage.setItem("1", JSON.stringify(photoPosts));
     }
   };
 })();
 
 window.nextId = (() => {
-  let id = 0;
+  let id = 1;
   return () => {
     return id++;
   };
 })();
 
-const users = [
+const storageUsers = [
   {
     username: "Alex",
     password: "123"
-    // posts: ["1", "2", "3"]
   },
   {
     username: "Gena",
@@ -42,7 +40,7 @@ const users = [
   }
 ];
 
-let photoPosts = [
+const storagePosts = [
   {
     id: nextId(),
     description: "в Пхёнчхане!!!",
@@ -100,5 +98,3 @@ let photoPosts = [
     likes: []
   }
 ];
-
-const storagePosts = photoPosts;

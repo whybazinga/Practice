@@ -31,7 +31,7 @@ const signInPage = new function() {
         password: e.currentTarget[1].value
       };
       if (
-        users.find(element => {
+        ls.getUsers().find(element => {
           return (
             element.username === user.login &&
             element.password === user.password
