@@ -18,17 +18,45 @@
     align-items: center;
     height: 90%;
     width: 90%;
-    background: '';
-    background-size: 100% 100%;
-    background-position: center;
 }
 
 .post-button-bar{
     padding: 5px 0;
-    height: 30px;
+    height: 40px;
     width: 95%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.settings-button,
+.cross-button,
+.heart-button{
+    background: rgb(216,202,174);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.post-button-bar .cross-button{
+    margin-left: 30%;
+}
+
+.post-button-bar .settings-button{
+    margin-right: 30%;
+}
+
+.settings-button{
+    background-image: url('../../icons/settings.png');
+    background-size: 80% 80%;
+}
+
+.heart-button{
+    background-image: url('../../icons/heart.png');
+    background-size: 75% 75%;
+}
+
+.cross-button{
+    background-image: url('../../icons/cross.png');
+    background-size: 100% 100%;
 }
 
 .post-button-bar img{

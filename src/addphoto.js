@@ -1,9 +1,12 @@
-const addPhoto = new function () {
+const addPhotoPage = new function () {
     this.page = () => {
         let main = document.createElement('main');
         main.className = 'add-photo';
         main.innerHTML = `
+        <form name="add-photo-form" method="post">
             <div class="photo-drag-input">
+                <div class="drop-input-button-bar"></div>
+                <input class="dnone" type="file"/>
                 <div id="drop-zone">
                     <div class="drop-upload">
                         <img src="icons/upload.png">
@@ -11,12 +14,22 @@ const addPhoto = new function () {
                     </div>
                 </div>
             </div>
-            <div class="photo-info"></div>
+            <div class="photo-info">
+                <textarea placeholder="Once upon a time..." name="description" maxlength="200" required></textarea>
+                <textarea placeholder="tag1 tag2 tag3..." name="hashTags"></textarea>
+            </div>
+            <div class="add-photo-form-buttons-bar">
+                <input type="submit" class="tick-button button" value="">
+                <button class="cross-button button">
+            </div>
+        </form>
         `;
         return main;
     }
 
-    this.init = () => {
+    //initUpload should change justifyContent of #drop-zone to flex-start when image is uploaded
+
+    function initUpload() {
         let reader, file;
         let dropZone = document.querySelector('#drop-zone');
         function abortRead() {
@@ -43,19 +56,26 @@ const addPhoto = new function () {
         }
 
         function loadHandler(theFile) {
-            let img = document.createElement('img');
-            img.src = reader.result;
-            img.title = escape(theFile.name);
-            img.className = 'uploaded-image';
-            dropZone.innerHTML = '';
-            dropZone.appendChild(img);
+            return function (e) {
+                let img = document.createElement('img');
+                img.src = reader.result;
+                img.title = escape(theFile.name);
+                img.className = 'uploaded-image';
+                let deleteButton = document.createElement('button');
+                deleteButton.className = "cross-button button addPhoto-delete-image";
+                deleteButton.addEventListener('click', handleDelete);
+                dropZone.innerHTML = '';
+                dropZone.style.alignItems = 'flex-start';
+                dropZone.parentElement.children[0].appendChild(deleteButton);
+                dropZone.appendChild(img);
+            }
         }
 
         function appendThumbnail(f) {
             reader = new FileReader();
             reader.onerror = errorHandler;
             reader.onabort = abortHandler;
-            reader.onload = loadHandler;
+            reader.onload = loadHandler(f);
             reader.readAsDataURL(f);
         }
 
@@ -63,10 +83,28 @@ const addPhoto = new function () {
             e.stopPropagation();
             e.preventDefault();
             dropZone.classList.remove('dragover');
-            file = e.dataTransfer.files[0];
+            file = e.dataTransfer ? e.dataTransfer.files[0] : document.querySelector('input.dnone').files[0];
             if (file.type.match('image.*')) {
                 appendThumbnail(file);
             }
+        }
+
+        function handleDelete() {
+            dropZone.innerHTML = `
+                    <div class="drop-upload">
+                        <img src="icons/upload.png">
+                        <h3>Upload</h3>
+                    </div>
+                `;
+            dropZone.style.alignItems = 'center';
+            const deleteButton = document.querySelector('button.cross-button');
+            deleteButton.removeEventListener('click', handleDelete);
+            dropZone.parentElement.children[0].removeChild(deleteButton);
+        }
+
+        function handleClick(e) {
+            e.stopPropagation();
+            document.querySelector('input.dnone').click();
         }
 
         function handleDragEnter(e) {
@@ -90,21 +128,67 @@ const addPhoto = new function () {
             e.dataTransfer.dropEffect = 'copy';
         }
 
+        dropZone.addEventListener('click', handleClick, false);
         dropZone.addEventListener('dragenter', handleDragEnter, false);
         dropZone.addEventListener('dragleave', handleDragLeave, false);
         dropZone.addEventListener('dragover', handleDragOver, false);
+        document.querySelector('input.dnone').addEventListener('change', handleFileSelect, false);
         dropZone.addEventListener('drop', handleFileSelect, false);
     }
 
-    this.load = () => {
+    function initFormActions(editMode) {
+        const form = document.forms['add-photo-form'];
+        const dropZone = document.querySelector('#drop-zone');
+        form.onsubmit = (e) => {
+            let photoPost = {
+                id: '100',
+                description: form.children[1].children[0].value,
+                createdAt: new Date(),
+                author: currentUser,
+                likes: [],
+            }
+            photoPost.hashTags = form.children[1].children[1].value.split(' ');
+            e.preventDefault();
+            if (dropZone.children[0].nodeName === 'DIV') {
+                alert('You should upload image first!');
+            } else {
+                photoPost.photoLink = dropZone.children[0].src;
+                console.log(coreF.addPhotoPost(photoPost));
+                goToPage('thread', true);
+            }
+        }
+        document.querySelector('.add-photo-form-buttons-bar>button').onclick = (e) => {
+            e.preventDefault();
+            goToPage('thread', true);
+        }
+    }
+
+    this.init = (editMode) => {
+        if (!editMode) {
+            initUpload();
+        } else {
+            ;
+        }
+        initFormActions(editMode);
+    }
+
+    this.load = (editMode) => {
+        document.querySelector('.header-search-bar').style.display = 'none';
         document.querySelector('#root').insertBefore(this.page(), document.querySelector('footer'));
-        this.init();
+        this.init(editMode);
     }
 
     this.unload = () => {
+        document.querySelector('.header-search-bar').style.display = '';
         let dropZone = document.querySelector('#drop-zone');
         dropZone.ondragenter = null;
+        dropZone.ondragleave = null;
+        dropZone.ondragover = null;
+        dropZone.ondrop = null;
+        dropZone.onclick = null;
+    }
+
+    this.changeUser = () => {
+        window.goToPage('login');
     }
 }
-
-addPhoto.load();

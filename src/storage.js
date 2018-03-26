@@ -1,26 +1,14 @@
-const users = [
-    {
-        username: 'Alex',
-        password: '123',
-        posts: ['1', '2'],
-    },
-    {
-        username: 'Xela',
-        password: '321',
-        posts: ['3', '4'],
-    },
-    {
-        username: 'Gena',
-        password: '111',
-        posts: ['5', '6'],
-    },
-]
+const admin = {
+    username: 'Alex',
+    password: '123',
+    posts: ['1', '2', '3'],
+};
 
 const photoPosts = [
     {
         id: '1',
         description: 'в Пхёнчхане!!!',
-        createdAt: new Date('2014-02-23T23:00:00'),
+        createdAt: new Date(2014, 1, 20),
         author: 'Alex',
         photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
         hashTags: ['#sport'],
@@ -39,7 +27,7 @@ const photoPosts = [
         id: '3',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         createdAt: new Date('2014-02-23T23:00:00'),
-        author: 'Xela',
+        author: 'Alex',
         photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
         hashTags: ['#sport'],
         likes: [],
@@ -73,10 +61,10 @@ const photoPosts = [
     },
 ]
 
-function currentUser() {
-    return JSON.parse(sessionStorage.getItem('currentUser'));
-}
+// function getCurrentUser() {
+//     return JSON.parse(sessionStorage.getItem('currentUser'));
+// }
 
-function logOut() {
-    sessionStorage.removeItem('currentUser');
-}
+// function logOut() {
+//     sessionStorage.removeItem('currentUser');
+// }

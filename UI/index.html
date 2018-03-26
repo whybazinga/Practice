@@ -18,14 +18,14 @@
     <div id='root'>
         <header>
             <div class='header-buttons-bar'>
-                <button class='upload button' style="visibility: hidden;"></button>
+                <button class='upload-button button' style="visibility: hidden;"></button>
                 <h1>
                     Carpe Diem
                 </h1>
                 <button class='logout-button button' style="display: none;"></button>
                 <button class='login-button button'></button>
             </div>
-            <div class='header-search-bar'>
+            <form name="header-search-bar" class="header-search-bar" method="post">
                 <div class='search-fields'>
                     <input type='text' placeholder='Author' />
                     <div class='date-bar'>
@@ -35,8 +35,8 @@
                     </div>
                     <input type='text' placeholder='Tags' />
                 </div>
-                <button class='search button'></button>
-            </div>
+                <input type="submit" class='search button' value="" />
+            </form>
             <h2 class='header-username'>Guest</h2>
         </header>
         <footer>
@@ -50,11 +50,12 @@
         </footer>
     </div>
 </body>
-<script src='../src/somejs.js'></script>
-<script src='../src/index.js'></script>
-<script src='../src/domapi.js'></script>
+<script src='../src/storage.js'></script>
+<script src='../src/coreF.js'></script>
+<script src='../src/domF.js'></script>
 <script src='../src/signin.js'></script>
 <script src='../src/thread.js'></script>
 <script src='../src/addphoto.js'></script>
+<script src='../src/index.js'></script>
 
 </html>

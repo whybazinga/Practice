@@ -14,6 +14,11 @@ const threadPage = new function () {
     }
 
     this.unload = () => {
-        document.querySelector('#root').removeChild(document.querySelector('main'));
+        //document.querySelector('#root').removeChild(document.querySelector('main'));
+    }
+
+    this.changeUser = () => {
+        domF.clearThread();
+        domF.addPhotoPosts();
     }
 }

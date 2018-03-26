@@ -8,17 +8,22 @@ header{
     width: 100%;
 }
 
-header h1{
-    font-size: 3em;
-    text-align: center;
-}
-
 .header-buttons-bar{
     display: flex;
     height: 60px;
     width: 100%;
     justify-content: space-around;
     align-items: center;
+}
+
+.header-buttons-bar h1{
+    font-size: 3em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.header-buttons-bar h1:hover{
+    text-shadow: 3px 3px 10px rgba(177, 143, 105, 0.7);
 }
 
 .header-search-bar{
@@ -52,7 +57,7 @@ header h1{
     outline: none;
 }
 
-.header-search-bar input{
+.search-fields input{
     padding: 0.25em;
     background: rgb(220, 226, 225);
     border: 1px solid rgb(177, 143, 105);

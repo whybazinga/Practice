@@ -15,6 +15,11 @@ main.login{
 
 .welcome-header h1{
     font-size: 28vh;
+    cursor: pointer;
+}
+
+.welcome-header h1:hover{
+    text-shadow: 7px 7px 25px rgba(177, 143, 105, 0.4);
 }
 
 main.login form{
@@ -51,8 +56,14 @@ main.login form div input{
 .submit-button{
     height: 18%;
     width: 60%;
+    outline: none;
     font-family: inherit;
     font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+.submit-button:active{
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 main.login h3{

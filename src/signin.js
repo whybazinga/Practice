@@ -10,7 +10,7 @@ const signInPage = new function () {
             <form name="login-form" method="post">
                 <div>
                     <label for="login">LOGIN </label>
-                    <input type="text" name="login">
+                    <input type="text" name="login" autofocus>
                 </div>
                 <div>
                     <label for="password">PASSWORD</label>
@@ -30,14 +30,18 @@ const signInPage = new function () {
                 login: e.currentTarget[0].value,
                 password: e.currentTarget[1].value,
             }
-            if (users.find((element) => {
-                return element.username === user.login && element.password === user.password;
-            })) {
-                alert('LOGGED');
+            // if (users.find((element) => {
+            //     return element.username === user.login && element.password === user.password;
+            // })) {
+            if (user.login === admin.username && admin.password === user.password) {
+                window.goToPage('thread');
+                window.changeUser(user.login);
+                domF.addPhotoPosts();
             } else {
-                alert('FU');
+                alert('Invalid input');
             }
         }
+        document.querySelector('.welcome-header>h1').onclick = () => { goToPage('thread', true) };
     }
 
     this.load = () => {
@@ -49,6 +53,7 @@ const signInPage = new function () {
     this.unload = () => {
         document.querySelector('header').style.display = '';
         document.forms['login-form'].onsubmit = null;
-        document.querySelector('#root').removeChild(document.querySelector('main'));
     }
+
+    this.changeUser = () => { }
 };
