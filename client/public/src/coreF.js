@@ -1,6 +1,6 @@
-const coreF = (function(params) {
+const coreF = (function (params) {
   return {
-    getPhotoPosts: function(skip = 0, top = 10, filterConfig) {
+    getPhotoPosts: function (skip = 0, top = 10, filterConfig) {
       let result;
       if (
         arguments.length < 3 ||
@@ -17,9 +17,9 @@ const coreF = (function(params) {
           if (filterConfig.hasOwnProperty("createdAt")) {
             flag =
               filterConfig.createdAt.getFullYear() ===
-                element.createdAt.getFullYear() &&
+              element.createdAt.getFullYear() &&
               filterConfig.createdAt.getMonth() ===
-                element.createdAt.getMonth() &&
+              element.createdAt.getMonth() &&
               filterConfig.createdAt.getDate() === element.createdAt.getDate();
           }
           if (filterConfig.hasOwnProperty("hashTags")) {
@@ -33,13 +33,13 @@ const coreF = (function(params) {
       return result;
     },
 
-    getPhotoPost: function(id) {
+    getPhotoPost: function (id) {
       return photoPosts.find(element => {
         return element.id == id;
       });
     },
 
-    validatePhotoPost: function(photoPost) {
+    validatePhotoPost: function (photoPost) {
       if (
         typeof photoPost.description !== "string" ||
         photoPost.description.length > 200
@@ -69,7 +69,7 @@ const coreF = (function(params) {
       return true;
     },
 
-    addPhotoPost: function(photoPost) {
+    addPhotoPost: function (photoPost) {
       if (this.validatePhotoPost(photoPost)) {
         photoPosts.push(photoPost);
         photoPosts.sort((element1, element2) => {
@@ -79,7 +79,7 @@ const coreF = (function(params) {
       } else return false;
     },
 
-    editPhotoPost: function(id, photoPost) {
+    editPhotoPost: function (id, photoPost) {
       let postToChange = this.getPhotoPost.call({ photoPosts: photoPosts }, id);
       if (postToChange !== undefined) {
         Object.assign(Object.assign({}, postToChange), photoPost);
@@ -91,7 +91,7 @@ const coreF = (function(params) {
       return false;
     },
 
-    removePhotoPost: function(id) {
+    removePhotoPost: function (id) {
       let index = photoPosts.findIndex(element => {
         return element.id == id;
       });
