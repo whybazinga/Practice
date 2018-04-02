@@ -1,10 +1,7 @@
-window.coreF = (function(params) {
+const coreF = (function(params) {
   return {
-    currentId: 1,
-
     getPhotoPosts: function(skip = 0, top = 10, filterConfig) {
       let result;
-      const photoPosts = ls.getPosts();
       if (
         arguments.length < 3 ||
         filterConfig === undefined ||
@@ -37,7 +34,6 @@ window.coreF = (function(params) {
     },
 
     getPhotoPost: function(id) {
-      const photoPosts = this.photoPosts || ls.getPosts();
       return photoPosts.find(element => {
         return element.id == id;
       });
@@ -75,24 +71,20 @@ window.coreF = (function(params) {
 
     addPhotoPost: function(photoPost) {
       if (this.validatePhotoPost(photoPost)) {
-        let photoPosts = ls.getPosts();
         photoPosts.push(photoPost);
         photoPosts.sort((element1, element2) => {
           return new Date(element2.createdAt) - new Date(element1.createdAt);
         });
-        ls.savePosts(photoPosts);
         return true;
       } else return false;
     },
 
     editPhotoPost: function(id, photoPost) {
-      let photoPosts = ls.getPosts();
       let postToChange = this.getPhotoPost.call({ photoPosts: photoPosts }, id);
       if (postToChange !== undefined) {
         Object.assign(Object.assign({}, postToChange), photoPost);
         if (this.validatePhotoPost(postToChange)) {
           Object.assign(postToChange, photoPost);
-          ls.savePosts(photoPosts);
           return true;
         }
       }
@@ -100,7 +92,6 @@ window.coreF = (function(params) {
     },
 
     removePhotoPost: function(id) {
-      let photoPosts = ls.getPosts();
       let index = photoPosts.findIndex(element => {
         return element.id == id;
       });
@@ -112,3 +103,5 @@ window.coreF = (function(params) {
     }
   };
 })();
+
+module.exports = coreF;
