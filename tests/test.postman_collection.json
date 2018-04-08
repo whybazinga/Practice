@@ -1,0 +1,253 @@
+{
+	"variables": [],
+	"info": {
+		"name": "test",
+		"_postman_id": "6a774b3a-ca3c-f2ed-7aa7-11f7ff9afc15",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test1",
+			"description": "",
+			"item": [
+				{
+					"name": "localhost:3000/post?id=8",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/post?id=8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "8",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"My EDITED post\",\r\n    \"author\": \"Alex\",\r\n    \"photoLink\":\r\n      \"https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg\",\r\n    \"hashTags\": [\"#nownotnew\", \"#post\"]\r\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/remove?id=8",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/remove?id=8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"remove"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "8",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"My EDITED post\",\r\n    \"author\": \"Alex\",\r\n    \"photoLink\":\r\n      \"https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg\",\r\n    \"hashTags\": [\"#nownotnew\", \"#post\"]\r\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/edit?id=8",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/edit?id=8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"edit"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "8",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"My EDITED post\",\r\n    \"author\": \"Alex\",\r\n    \"photoLink\":\r\n      \"https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg\",\r\n    \"hashTags\": [\"#nownotnew\", \"#post\"]\r\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/add",
+					"request": {
+						"url": "localhost:3000/add",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": 8,\r\n    \"description\": \"My new post\",\r\n    \"createdAt\": \"2010-02-23T23:00:00\",\r\n    \"author\": \"Alex\",\r\n    \"photoLink\":\r\n      \"https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg\",\r\n    \"hashTags\": [\"#new\", \"#post\"],\r\n    \"likes\": []\r\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/posts",
+					"request": {
+						"url": "localhost:3000/posts",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Bang bang bang\",\r\n    \"author\": \"Alex\",\r\n    \"photoLink\":\r\n      \"https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg\",\r\n    \"hashTags\": [\"#bang\", \"#artist\"]\r\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/posts?skip=1&top=10",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/posts?skip=1&top=10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "top",
+									"value": "10",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Bang bang bang\",\r\n    \"author\": \"Alex\",\r\n    \"photoLink\":\r\n      \"https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg\",\r\n    \"hashTags\": [\"#bang\", \"#artist\"]\r\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/post?id=2",
+					"request": {
+						"url": {
+							"raw": "localhost:3000/post?id=2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"post"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Bang bang bang\",\r\n    \"author\": \"Alex\",\r\n    \"photoLink\":\r\n      \"https://i.pinimg.com/originals/80/5f/fe/805ffe6b5120ac4345d577504f134ecb.jpg\",\r\n    \"hashTags\": [\"#bang\", \"#artist\"]\r\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
