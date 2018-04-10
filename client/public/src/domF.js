@@ -49,7 +49,7 @@ window.domF = (function () {
 
                     post.querySelector(".cross-button").onclick = () => {
                         if (confirm("Delete this post?")) {
-                            domF.removePhotoPost(photoPost.id);
+                            db.delete("/remove", { id: photoPost.id });
                         }
                     };
                 } else {
@@ -63,7 +63,7 @@ window.domF = (function () {
                     `;
                     }
                     post.querySelector(".heart-button").onclick = () => {
-                        let post = coreF.getPhotoPost(el.closest(".post").id);
+                        let post = db.get("/post", { id: el.closest(".post").id });
                         if (!post.likes.find(e => e == currentUser)) {
                             post.likes.push(currentUser);
                             this.style.backgroundImage = "url(./icons/heartF.png)";
@@ -71,7 +71,7 @@ window.domF = (function () {
                             post.likes.splice(post.likes.indexOf(currentUser), 1);
                             this.style.backgroundImage = "url(./icons/heart.png)";
                         }
-                        coreF.editPhotoPost(post.id, post);
+                        db.put("/edit", { id: post.id }, post);
                     };
                 }
             }
@@ -79,7 +79,7 @@ window.domF = (function () {
         },
 
         addPhotoPost: function (photoPost) {
-            if (coreF.addPhotoPost(photoPost)) {
+            if (db.post("/add", photoPost)) {
                 document
                     .querySelector("main")
                     .appendChild(this.createPhotoPost(photoPost));
@@ -89,29 +89,41 @@ window.domF = (function () {
         },
 
         showPhotoPosts: function (skip = 0, top = 10, filterConfig) {
-            let arr = coreF.getPhotoPosts(skip, top, filterConfig);
-            arr.forEach(element => {
-                document
-                    .querySelector("main")
-                    .appendChild(this.createPhotoPost(element));
-            });
+            db.get("/posts", { skip: skip, top: top, filterConfig: filterConfig })
+                .then(
+                res => {
+                    JSON.parse(res).forEach(element => {
+                        document
+                            .querySelector("main")
+                            .appendChild(this.createPhotoPost(element));
+                    });
+                }
+                )
+                .catch(err => console.log(err));
         },
 
         editPhotoPost: function (id, photoPost) {
-            if (coreF.editPhotoPost(id, photoPost)) {
-                document
-                    .querySelector("main")
-                    .replaceChild(
-                    this.createPhotoPost(coreF.getPhotoPost(id)),
-                    document.getElementById(id)
-                    );
-                return true;
-            }
+            db.put("/edit", { id: id }, photoPost)
+                .then(res => {
+                    return new Promise((resolve, reject) => {
+                        if (res == "true") {
+                            document
+                                .querySelector("main")
+                                .replaceChild(
+                                this.createPhotoPost(db.get("/post", { id: id })),
+                                document.getElementById(id)
+                                );
+                            resolve();
+                        } else reject("false result");
+
+                    });
+                })
+                .catch(err => console.log(err));
             return false;
         },
 
         removePhotoPost: function (id) {
-            if (coreF.removePhotoPost(id)) {
+            if (db.delete("/remove", { id: id })) {
                 document.querySelector("main").removeChild(document.getElementById(id));
                 return true;
             }

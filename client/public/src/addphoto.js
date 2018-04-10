@@ -142,7 +142,7 @@ const addPhotoPage = new function () {
         const dropZone = document.querySelector("#drop-zone");
         form.onsubmit = e => {
             e.preventDefault();
-            let photoPost = !editModeId ? {} : coreF.getPhotoPost(editModeId);
+            let photoPost = !editModeId ? {} : db.get("/post", { id: editModeId });
             if (!editModeId) {
                 photoPost.id = window.nextId();
                 photoPost.createdAt = new Date();
@@ -156,9 +156,9 @@ const addPhotoPage = new function () {
             } else {
                 photoPost.photoLink = dropZone.children[0].src;
                 if (editModeId) {
-                    console.log(coreF.editPhotoPost(editModeId, photoPost));
+                    console.log(db.put("/edit", { id: editModeId }, photoPost));
                 } else {
-                    console.log(coreF.addPhotoPost(photoPost));
+                    console.log(db.post("/add", photoPost));
                 }
                 goToPage("thread", true);
             }
@@ -190,9 +190,7 @@ const addPhotoPage = new function () {
                 "textarea[name=description]"
             );
             const formHashTags = document.querySelector("textarea[name=hashTags]");
-            const { photoLink, description, hashTags } = coreF.getPhotoPost(
-                editModeId
-            );
+            const { photoLink, description, hashTags } = db.get("/post", { id: editModeId });
             let img = document.createElement("img");
             img.src = photoLink;
             img.className = "uploaded-image";
