@@ -137,70 +137,77 @@ const addPhotoPage = new function () {
         dropZone.addEventListener("drop", handleFileSelect, false);
     }
 
-    function initFormActions(editModeId) {
+    function initEditFormActions(editModeId) {
         const form = document.forms["add-photo-form"];
         const dropZone = document.querySelector("#drop-zone");
         form.onsubmit = e => {
             e.preventDefault();
-            let photoPost = !editModeId ? {} : db.get("/post", { id: editModeId });
-            if (!editModeId) {
-                photoPost.id = window.nextId();
-                photoPost.createdAt = new Date();
-                photoPost.likes = [];
-                photoPost.author = currentUser;
-            }
+            db.get("/post", { id: editModeId })
+                .then(res => {
+                    let photoPost = JSON.parse(res);
+                    photoPost.description = form.children[1].children[0].value;
+                    photoPost.hashTags = form.children[1].children[1].value.split(" ");
+                    goToPage("thread", true);
+                    domF.editPhotoPost(editModeId, photoPost);
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
+    function initAddFormActions() {
+        const form = document.forms["add-photo-form"];
+        const dropZone = document.querySelector("#drop-zone");
+        form.onsubmit = e => {
+            e.preventDefault();
+            let photoPost = {};
+            photoPost.id = window.nextId();
+            photoPost.createdAt = new Date();
+            photoPost.likes = [];
+            photoPost.author = currentUser;
             photoPost.description = form.children[1].children[0].value;
             photoPost.hashTags = form.children[1].children[1].value.split(" ");
             if (dropZone.children[0].nodeName === "DIV") {
                 alert("You should upload image first!");
             } else {
                 photoPost.photoLink = dropZone.children[0].src;
-                if (editModeId) {
-                    console.log(db.put("/edit", { id: editModeId }, photoPost));
-                } else {
-                    console.log(db.post("/add", photoPost));
-                }
                 goToPage("thread", true);
+                domF.addPhotoPost(photoPost);
             }
-        };
-
-        document.querySelector(
-            ".add-photo-form-buttons-bar>button"
-        ).onclick = e => {
-            e.preventDefault();
-            goToPage("thread", true);
-        };
+        }
     }
 
     this.init = editModeId => {
-        if (!editModeId) {
+        if (editModeId) {
+            initEditFormActions(editModeId);
+        } else {
             initUpload();
+            initAddFormActions();
         }
-        initFormActions(editModeId);
     };
 
-    this.load = editModeId => {
+    this.load = (editModeId) => {
         document.querySelector(".header-search-bar").style.display = "none";
         document
             .querySelector("#root")
             .insertBefore(this.page(), document.querySelector("footer"));
         if (editModeId) {
             const dropZone = document.querySelector("#drop-zone");
-            const formDescription = document.querySelector(
-                "textarea[name=description]"
-            );
+            const formDescription = document.querySelector("textarea[name=description]");
             const formHashTags = document.querySelector("textarea[name=hashTags]");
-            const { photoLink, description, hashTags } = db.get("/post", { id: editModeId });
-            let img = document.createElement("img");
-            img.src = photoLink;
-            img.className = "uploaded-image";
-            dropZone.innerHTML = "";
-            dropZone.style.alignItems = "flex-start";
-            dropZone.appendChild(img);
-            formDescription.innerHTML = description;
-            formHashTags.innerHTML = hashTags.reduce(
-                (accum, element) => accum + " " + element
-            );
+            db.get("/post", { id: editModeId })
+                .then(res => {
+                    const { photoLink, description, hashTags } = JSON.parse(res);
+                    let img = document.createElement("img");
+                    img.src = photoLink;
+                    img.className = "uploaded-image";
+                    dropZone.innerHTML = "";
+                    dropZone.style.alignItems = "flex-start";
+                    dropZone.appendChild(img);
+                    formDescription.innerHTML = description;
+                    formHashTags.innerHTML = hashTags.reduce(
+                        (accum, element) => accum + " " + element
+                    );
+                })
         }
         this.init(editModeId);
     };

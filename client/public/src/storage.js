@@ -1,6 +1,11 @@
 const db = (function () {
     function parametres(params) {
-        return Object.keys(params).reduce((res, el) => res += "&" + el);
+        let result = Object.keys(params)
+            .filter(el => typeof params[el] !== "undefined")
+            .reduce((accum, el, index) => {
+                return accum + (index === 0 ? "" : "&") + el + "=" + params[el];
+            }, "");
+        return result;
     };
 
     function request(type, path, params, reqBody, callBack) {
@@ -27,7 +32,7 @@ const db = (function () {
             xhr.onerror = function () {
                 reject(new Error("Network Error"));
             };
-            xhr.send(reqBody ? reqBody : null);
+            xhr.send(reqBody ? JSON.stringify(reqBody) : null);
         })
     };
 

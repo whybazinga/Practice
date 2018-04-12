@@ -49,7 +49,7 @@ window.domF = (function () {
 
                     post.querySelector(".cross-button").onclick = () => {
                         if (confirm("Delete this post?")) {
-                            db.delete("/remove", { id: photoPost.id });
+                            this.removePhotoPost(photoPost.id);
                         }
                     };
                 } else {
@@ -62,16 +62,22 @@ window.domF = (function () {
                         <button class="heart-button button"></button>
                     `;
                     }
-                    post.querySelector(".heart-button").onclick = () => {
-                        let post = db.get("/post", { id: el.closest(".post").id });
-                        if (!post.likes.find(e => e == currentUser)) {
-                            post.likes.push(currentUser);
-                            this.style.backgroundImage = "url(./icons/heartF.png)";
-                        } else {
-                            post.likes.splice(post.likes.indexOf(currentUser), 1);
-                            this.style.backgroundImage = "url(./icons/heart.png)";
-                        }
-                        db.put("/edit", { id: post.id }, post);
+                    post.querySelector(".heart-button").onclick = function () {
+                        const id = photoPost.id;
+                        db.get("/post", { id: id })
+                            .then(res => {
+                                let post = JSON.parse(res);
+                                if (!post.likes.find(e => e == currentUser)) {
+                                    post.likes.push(currentUser);
+                                    this.style.backgroundImage = "url(./icons/heartF.png)";
+                                } else {
+                                    post.likes.splice(post.likes.indexOf(currentUser), 1);
+                                    this.style.backgroundImage = "url(./icons/heart.png)";
+                                }
+                                return post;
+                            }).then(post => {
+                                domF.editPhotoPost(id, post);
+                            })
                     };
                 }
             }
@@ -79,26 +85,31 @@ window.domF = (function () {
         },
 
         addPhotoPost: function (photoPost) {
-            if (db.post("/add", photoPost)) {
-                document
-                    .querySelector("main")
-                    .appendChild(this.createPhotoPost(photoPost));
-                return true;
-            }
-            return false;
+            db.post("/add", photoPost)
+                .then(res => {
+                    return new Promise((resolve, reject) => {
+                        if (res == "true") {
+                            document
+                                .querySelector("main")
+                                .insertBefore(this.createPhotoPost(photoPost), document.querySelector(".post"));
+                            resolve();
+                        } else {
+                            reject("Error occured in addPhotoPost()");
+                        }
+                    });
+                })
+                .catch(err => console.log(err));
         },
 
         showPhotoPosts: function (skip = 0, top = 10, filterConfig) {
             db.get("/posts", { skip: skip, top: top, filterConfig: filterConfig })
-                .then(
-                res => {
+                .then(res => {
                     JSON.parse(res).forEach(element => {
                         document
                             .querySelector("main")
                             .appendChild(this.createPhotoPost(element));
                     });
-                }
-                )
+                })
                 .catch(err => console.log(err));
         },
 
@@ -107,27 +118,41 @@ window.domF = (function () {
                 .then(res => {
                     return new Promise((resolve, reject) => {
                         if (res == "true") {
-                            document
-                                .querySelector("main")
-                                .replaceChild(
-                                this.createPhotoPost(db.get("/post", { id: id })),
-                                document.getElementById(id)
-                                );
                             resolve();
-                        } else reject("false result");
-
+                        } else reject("Error occured in editPhotoPost()");
                     });
                 })
+                .then(() => {
+                    return db.get("/post", { id: id })
+                })
+                .then(res => {
+                    document
+                        .querySelector("main")
+                        .replaceChild(
+                        this.createPhotoPost(JSON.parse(res)),
+                        document.getElementById(id)
+                        );
+                })
                 .catch(err => console.log(err));
-            return false;
         },
 
         removePhotoPost: function (id) {
-            if (db.delete("/remove", { id: id })) {
-                document.querySelector("main").removeChild(document.getElementById(id));
-                return true;
-            }
-            return false;
+            db.delete("/remove", { id: id })
+                .then(res => {
+                    return new Promise((resolve, reject) => {
+                        if (res == "true") {
+                            try {
+                                document
+                                    .querySelector("main")
+                                    .removeChild(document.getElementById(id));
+                                resolve();
+                            } catch (error) {
+                                reject(error);
+                            }
+                        } else reject("Error occured in removePhotoPost()");
+                    })
+                })
+                .catch(err => console.log(err));
         },
 
         clearThread: function () {
