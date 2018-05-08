@@ -206,7 +206,7 @@ const addPhotoPage = new function () {
           dropZone.style.alignItems = 'flex-start';
           dropZone.appendChild(img);
           formDescription.innerHTML = description;
-          formHashTags.innerHTML = hashTags.reduce((accum, element) => accum + ' ' + element);
+          formHashTags.innerHTML = hashTags.reduce((accum, element) => `${accum} ${element}`);
         });
     }
     this.init(editModeId);
